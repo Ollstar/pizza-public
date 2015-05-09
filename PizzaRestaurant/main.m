@@ -9,15 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "Pizza.h"
 #import "Kitchen.h"
+#import "meanManager.h"
+#import "cheeryManager.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        NSLog(@"Please pick your pizza size and toppings:");
+        NSLog(@"Select Manager: Size: Toppings:");
         
         Kitchen *restaurantKitchen = [Kitchen new];
+        cheeryManager *cMngr = [cheeryManager new];
+        meanManager *mMngr = [meanManager new];
         
         while (TRUE) {
             // Loop forever
@@ -33,14 +37,16 @@ int main(int argc, const char * argv[])
             
             // Take the first word of the command as the size, and the rest as the toppings
             NSArray *commandWords = [inputString componentsSeparatedByString:@" "];
-            PizzaSize pizzaSize = [Pizza pizzaSize:[commandWords objectAtIndex:0]];
-            NSArray *toppings = [commandWords objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, commandWords.count-1)]];
-            
-            Pizza *myPizza =[restaurantKitchen makePizzaWithSize:pizzaSize toppings:toppings];
-            
+            NSString *managerSelection = commandWords[0];
+            PizzaSize pizzaSize = [Pizza pizzaSize:commandWords[1]];
+            NSArray *toppings = [commandWords objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(2, commandWords.count-2)]];
 
+            if ([managerSelection isEqualToString:@"mean"])
+                restaurantKitchen.delegate = mMngr;
+            else if ([managerSelection isEqualToString:@"cheery"])
+                restaurantKitchen.delegate = cMngr;
             
-            
+            Pizza *myPizza = [restaurantKitchen makePizzaWithSize:pizzaSize toppings:toppings];
             
             
             // And then send some message to the kitchen...

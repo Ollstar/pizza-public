@@ -10,9 +10,21 @@
 
 @implementation Kitchen
 
-- (Pizza *)makePizzaWithSize:(Size)size toppings:(NSArray *)toppings
-{
-    return [Pizza pizzaWithSize:toppings andSize:size];
+- (Pizza *)makePizzaWithSize:(Size)size toppings:(NSArray *)toppings {
+    if ([self.delegate kitchenShouldUpgradeOrder:self]) {
+        size = PizzaSizeLarge;
+    }
+    
+    if (![self.delegate kitchen:self shouldMakePizzaOfSize:size toppings:toppings]) {
+        return nil;
+    }
+    
+    Pizza *pizza = [Pizza pizzaWithToppings:toppings andSize:size];
+    
+    if ([self.delegate respondsToSelector:@selector(kitchenDidMakePizza:)])
+        [self.delegate kitchenDidMakePizza:pizza];
+    
+    return pizza;
 }
 
 @end

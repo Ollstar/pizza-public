@@ -16,14 +16,10 @@ typedef NS_ENUM(NSInteger, PizzaSize) {
     PizzaSizeLarge,
 };
 
-@property(nonatomic,strong)NSArray *toppings;
-@property(nonatomic,assign)PizzaSize size;
+@property(nonatomic) NSArray *toppings;
+@property(nonatomic) PizzaSize size;
 
-//- (Pizza *)initWithSize:(NSArray *)toppings andSize:(PizzaSize)size;
-+ (Pizza *)pizzaWithSize:(NSArray *)toppings andSize:(PizzaSize)size;
-
-
-+ (PizzaSize) pizzaSize:(NSString *)pizzaString;
-
++ (Pizza *)pizzaWithToppings:(NSArray *)toppings andSize:(PizzaSize)size;
++ (PizzaSize)pizzaSize:(NSString *)pizzaString;
 
 @end

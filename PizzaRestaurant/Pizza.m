@@ -10,13 +10,11 @@
 
 @implementation Pizza
 
-+ (Pizza *)pizzaWithSize:(NSArray *)toppings andSize:(PizzaSize)size{
++ (Pizza *)pizzaWithToppings:(NSArray *)toppings andSize:(PizzaSize)size {
     return [[Pizza alloc] initWithSize:toppings andSize:size];
 }
 
-
-- (Pizza *)initWithSize:(NSArray *)toppings andSize:(PizzaSize)size
-{
+- (Pizza *)initWithSize:(NSArray *)toppings andSize:(PizzaSize)size {
     self = [super init];
     if (self) {
         self.toppings = toppings;
@@ -34,8 +32,5 @@
         return PizzaSizeSmall;
     }
 }
-
-
-
 
 @end
