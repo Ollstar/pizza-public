@@ -7,11 +7,13 @@
 //
 
 #import "Pizza.h"
+
+#import "DeliveryService.h"
 @class Kitchen;
 
 @protocol RestaurantManager <NSObject>
 
-- (BOOL)kitchen:(Kitchen *)kitchen shouldMakePizzaOfSize:(Size)size toppings:(NSArray *)toppings;
+- (BOOL)kitchen:(Kitchen *)kitchen shouldMakePizzaOfSize:(PizzaSize)size toppings:(NSArray *)toppings;
 - (BOOL)kitchenShouldUpgradeOrder:(Kitchen *)kitchen;
 
 @optional

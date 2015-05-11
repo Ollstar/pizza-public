@@ -1,5 +1,5 @@
 //
-//  cheeryManager.h
+//  DeliveryCar.h
 //  PizzaRestaurant
 //
 //  Created by Oliver Andrews on 2015-05-08.
@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RestaurantManager.h"
+#import "Pizza.h"
 
-@interface cheeryManager : NSObject <RestaurantManager>
+@interface DeliveryCar : NSObject
 
-@property (nonatomic) DeliveryService *deliveryService;
+- (void)deliverPizza:(Pizza *)pizza;
 
 @end

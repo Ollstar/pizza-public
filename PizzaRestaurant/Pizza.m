@@ -23,7 +23,7 @@
     return self;
 }
 
-+ (PizzaSize) pizzaSize:(NSString *)pizzaString {
++ (PizzaSize)pizzaSize:(NSString *)pizzaString {
     if ([pizzaString isEqualToString:@"large"]) {
         return PizzaSizeLarge;
     } else if ([pizzaString isEqualToString:@"medium"]) {

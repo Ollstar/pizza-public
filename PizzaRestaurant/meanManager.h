@@ -11,4 +11,6 @@
 
 @interface meanManager : NSObject <RestaurantManager>
 
+@property (nonatomic) DeliveryService *deliveryService;
+
 @end

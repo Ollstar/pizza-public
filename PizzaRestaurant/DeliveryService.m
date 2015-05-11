@@ -1,29 +1,28 @@
 //
-//  cheeryManager.m
+//  DeliveryService.m
 //  PizzaRestaurant
 //
 //  Created by Oliver Andrews on 2015-05-08.
 //  Copyright (c) 2015 Lighthouse Labs. All rights reserved.
 //
 
-#import "cheeryManager.h"
+#import "DeliveryService.h"
 
-@implementation cheeryManager
+@interface DeliveryService ()
 
-- (BOOL)kitchen:(Kitchen *)kitchen shouldMakePizzaOfSize:(PizzaSize)size toppings:(NSArray *)toppings {
-    return YES;
+@end
+
+@implementation DeliveryService
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.deliveryCar = [[DeliveryCar alloc]init];
+        self.pizzaLog = [NSMutableArray array];
+    }
+    return self;
 }
-
-- (BOOL)kitchenShouldUpgradeOrder:(Kitchen *)kitchen {
-    return YES;
-}
-
-- (void)kitchenDidMakePizza:(Pizza *)pizza {
-    NSLog(@"Thanks for visiting Cheery Pizza, here is your %@", [self getStringForPizzaSize:pizza.size andToppings:pizza.toppings]);
-    [self.deliveryService deliverPizza:pizza];
-}
-
-
 
 - (NSString *)getStringForPizzaSize:(PizzaSize)size andToppings:(NSArray *)toppings {
     
@@ -45,14 +44,12 @@
     }
     return str;
 }
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.deliveryService = [[DeliveryService alloc]init];
+- (void)deliverPizza:(Pizza *)pizza {
+    [self.pizzaLog addObject:pizza];
+    for (Pizza *pizza in self.pizzaLog) {
+        NSLog(@"Pizza log:%@", [self getStringForPizzaSize:pizza.size andToppings:pizza.toppings]);
     }
-    return self;
+    [self.deliveryCar deliverPizza:pizza];
 }
 
 @end

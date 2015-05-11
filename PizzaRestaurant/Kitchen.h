@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "Pizza.h"
 #import "RestaurantManager.h"
+#import "meanManager.h"
+#import "cheeryManager.h"
+
 
 @interface Kitchen : NSObject
 
 @property (nonatomic) id<RestaurantManager> delegate;
+@property (nonatomic) meanManager* aMeanManager;
+@property (nonatomic) cheeryManager* aCheeryManager;
 
-- (Pizza *)makePizzaWithSize:(Size)size toppings:(NSArray *)toppings;
+- (Pizza *)makePizzaWithSize:(PizzaSize)size toppings:(NSArray *)toppings;
+
+
 
 @end

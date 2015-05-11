@@ -19,40 +19,17 @@ int main(int argc, const char * argv[])
         
         NSLog(@"Select Manager: Size: Toppings:");
         
-        Kitchen *restaurantKitchen = [Kitchen new];
-        cheeryManager *cMngr = [cheeryManager new];
-        meanManager *mMngr = [meanManager new];
+        Kitchen *restaurantKitchen = [[Kitchen alloc] init];
+        PizzaSize pizzaSize;
+        NSArray *toppings;
         
         while (TRUE) {
-            // Loop forever
-            
-            NSLog(@"> ");
-            char str[100];
-            fgets (str, 100, stdin);
-            
-            NSString *inputString = [[NSString alloc] initWithUTF8String:str];
-            inputString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            NSLog(@"Input was %@", inputString);
-            
-            // Take the first word of the command as the size, and the rest as the toppings
-            NSArray *commandWords = [inputString componentsSeparatedByString:@" "];
-            NSString *managerSelection = commandWords[0];
-            PizzaSize pizzaSize = [Pizza pizzaSize:commandWords[1]];
-            NSArray *toppings = [commandWords objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(2, commandWords.count-2)]];
-
-            if ([managerSelection isEqualToString:@"mean"])
-                restaurantKitchen.delegate = mMngr;
-            else if ([managerSelection isEqualToString:@"cheery"])
-                restaurantKitchen.delegate = cMngr;
-            
-            Pizza *myPizza = [restaurantKitchen makePizzaWithSize:pizzaSize toppings:toppings];
-            
-            
-            // And then send some message to the kitchen...
+//      Will take user input and make pizza.
+        Pizza *myPizza = [restaurantKitchen makePizzaWithSize:pizzaSize toppings:toppings];
+        //add pizza to delivery service pizza log
+        
         }
-
-    }
+        
     return 0;
+    }
 }
-
